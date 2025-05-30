@@ -1,21 +1,28 @@
-</main>
-
-<footer style="height: 80px;;
-">
-
-    <% const d = new Date();%>
-        <% let year = d.getFullYear();%>
-
-
-            <!-- Step 4 - Add a dynamic year to the footer using JS. -->
-            <p style="font-weight: bold;
-            font-size: x-large; 
-            color: #000;
-            justify-content: center;
-            justify-items: center;">Copyright ©
-                <%= year %>
-            </p>
+<footer class="app-footer">
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            <p>© 2023 Todo App | Developed with <i class="fas fa-heart"></i> and Node.js</p>
+        </div>
+        <div class="stats">
+            <span><i class="fas fa-tasks"></i> <%- totalTasks %> tasks</span>
+            <span><i class="fas fa-check-circle"></i> <%- completedTasks %> completed</span>
+        </div>
+    </div>
 </footer>
-</body>
 
-</html>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+    // Display current date
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', options);
+</script>

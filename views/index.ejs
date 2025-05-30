@@ -1,15 +1,56 @@
-<%- include("partials/header.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
 
+<body>
+    <%- include('partials/header.ejs') %>
 
+        <main class="container">
+            <form action="/add" method="POST" class="add-task">
+                <input type="text" name="title" placeholder="New task..." required>
+                <button type="submit"><i class="fas fa-plus"></i> Add Task</button>
+            </form>
 
-    <h1>Welcome</h1>
+            <ul class="task-list">
+                <% tasks.forEach((task, index) => { %>
+                    <li class="<%= task.completed ? 'completed' : '' %>" style="animation-delay: <%- index * 0.1 %>s">
+                        <span><%= task.title %></span>
+                        <div class="actions">
+                            <form action="/complete/<%= task.id %>" method="POST">
+                                <button type="submit" class="complete-btn">
+                                <% if (task.completed) { %>
+                                    <i class="fas fa-undo"></i> Undo
+                                <% } else { %>
+                                    <i class="fas fa-check"></i> Complete
+                                <% } %>
+                            </button>
+                            </form>
+                            <form action="/delete/<%= task.id %>" method="POST">
+                                <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                    <% }); %>
+            </ul>
 
+            <% if (tasks.length === 0) { %>
+                <div class="empty-state">
+                    <i class="far fa-clipboard"></i>
+                    <p>No tasks yet!</p>
+                </div>
+                <% } %>
+        </main>
 
+        <%- include('partials/footer.ejs') %>
 
+            <script src="../public/js/script.js"></script>
+</body>
 
-
-
-
-
-    <%- include("partials/footer.ejs") %>
+</html>

@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <link rel="stylesheet" href="styles/main.css">
-
-    <title>To Do App</title>
-
-</head>
-
-<body>
-    <main>
-        <header class="d-flex justify-content-center py-3">
-            <div class="header">
-                <a href="https://github.com/ghanbaridev" class="logo"><img src="image/mylogo.png" class="img"></a>
-                <div class="header-right">
-
-                    <a href="#contact" class=".header a.active">Work</a>
-                    <a href="#about" class=".header a.active">Today</a>
-                </div>
-            </div>
-        </header>
-    </main>
-</body>
+<header class="app-header">
+    <div class="header-content">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2ecc71" width="36px" height="36px">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <h1>Advanced Todo App</h1>
+        </div>
+        <div class="date-display">
+            <span id="current-date"></span>
+        </div>
+    </div>
+    <div class="progress-bar">
+        <div class="progress" style="width: <%- completedPercentage %>%"></div>
+    </div>
+</header>

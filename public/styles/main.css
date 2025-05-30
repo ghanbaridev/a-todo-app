@@ -1,81 +1,285 @@
-/* Style the header with a grey background and some padding */
-
-.header {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 100hv;
-    width: 100%;
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Style the header links */
+.app-header {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-.header a {
-    display: inline;
+.header-content {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: x-large;
-    font-weight: bold;
-    line-height: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-
-/* Change the background color on mouse-over */
-
-.header a:hover {
-    background-color: #ddd;
-    color: black;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
 
-/* Style the active/current link*/
+.date-display {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
 
-.header a.active {
-    background-color: dodgerblue;
+.progress-bar {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-top: 1rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: white;
+    transition: width 0.5s ease;
+}
+
+.app-footer {
+    background: #2c3e50;
     color: white;
+    padding: 2rem;
+    margin-top: auto;
 }
 
-
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-
-@media screen and (max-width: 500px) {
-    .header a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-    .header-right {
-        float: none;
-    }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
 
-@media screen and (max-width: 500px) {
-    footer {
-        float: none;
-        display: block;
-        text-align: left;
-    }
+.social-links {
+    display: flex;
+    gap: 1.5rem;
 }
 
-footer {
-    text-align: center;
-    padding: 3px;
-    background-color: DarkSalmon;
+.social-icon {
     color: white;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    color: #2ecc71;
+}
+
+.copyright {
+    text-align: center;
+    opacity: 0.8;
+}
+
+.copyright i {
+    color: #e74c3c;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stats i {
+    color: #2ecc71;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+}
+
+.empty-state {
+    text-align: center;
+    margin-top: 3rem;
+    color: #7f8c8d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.add-task {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.add-task input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.add-task input:focus {
+    outline: none;
+    border-color: #2ecc71;
+}
+
+.add-task button {
+    padding: 0 1.5rem;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-task button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-list {
+    list-style: none;
+}
+
+.task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-list li.completed span {
+    color: #95a5a6;
+    position: relative;
+}
+
+.task-list li.completed span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
     width: 100%;
+    height: 1px;
+    background: #95a5a6;
+    transform: translateY(-50%);
 }
 
-.img {
-    border-radius: 50%;
-    height: 135px;
-    width: 135px;
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.complete-btn,
+.delete-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.complete-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.complete-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.task-list li.deleting {
+    animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes slideOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .add-task {
+        flex-direction: column;
+    }
+    .task-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
 }
