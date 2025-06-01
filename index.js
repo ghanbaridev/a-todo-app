@@ -3,7 +3,8 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(
+    import.meta.url);
 const __dirname = path.dirname(__filename);
 const TASKS_FILE = path.join(__dirname, 'tasks.json');
 const PORT = process.env.PORT || 3000;
@@ -39,8 +40,8 @@ app.get('/', (req, res) => {
     const totalTasks = tasks.length;
     const completedTasks = tasks.filter(t => t.completed).length;
     const completedPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-    
-    res.render('index', { 
+
+    res.render('index', {
         tasks,
         totalTasks,
         completedTasks,
@@ -51,7 +52,7 @@ app.get('/', (req, res) => {
 app.post('/add', (req, res) => {
     const { title } = req.body;
     if (!title) return res.redirect('/');
-    
+
     const tasks = getAllTasks();
     const newTask = {
         id: Date.now(),
@@ -68,7 +69,7 @@ app.post('/complete/:id', (req, res) => {
     const { id } = req.params;
     const tasks = getAllTasks();
     const task = tasks.find(t => t.id === Number(id));
-    
+
     if (task) {
         task.completed = !task.completed;
         saveTasks(tasks);
@@ -87,7 +88,7 @@ app.post('/delete/:id', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
-    
+
     // Create tasks.json if it doesn't exist
     if (!fs.existsSync(TASKS_FILE)) {
         fs.writeFileSync(TASKS_FILE, '[]', 'utf8');
